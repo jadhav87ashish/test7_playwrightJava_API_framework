@@ -1,10 +1,13 @@
 package utility;
 
+import base.FrameworkConfig;
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.RequestOptions;
+import config.Settings;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class APISetup {
@@ -43,10 +46,30 @@ public class APISetup {
     }
 
     private APIRequestContext setAPIRequestContext() {
-        System.out.println(setBaseURL);
-        return FrameworkConfig.playwright.request().newContext(new APIRequest().NewContextOptions())
+        System.out.println(setBaseURL());
+        return FrameworkConfig.playwright.request().newContext(new APIRequest.NewContextOptions()
                 .setBaseURL(setBaseURL()).setExtraHTTPHeaders(setHeaders()).setTimeout(30000));
 
+    }
+
+    private Map<String, String> setHeaders() {
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type","application/json");
+        return headers;
+    }
+
+    public String setBaseURL(){
+        String baseURL;
+        if (Settings.envName.equalsIgnoreCase("prod")||
+                Settings.envName.equalsIgnoreCase("preProd")||
+                Settings.envName.equalsIgnoreCase("staging") ){
+            baseURL=Settings.URL;
+        }
+        else {
+            String url = Settings.URL;
+            baseURL=url;
+        }
+        return baseURL;
     }
 
 
@@ -56,4 +79,6 @@ public class APISetup {
 
         return param;
     }
+
+
 }
