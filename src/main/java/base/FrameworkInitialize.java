@@ -17,6 +17,8 @@ public class FrameworkInitialize {
         if (!Settings.BrowserName.equalsIgnoreCase("webkit")){
             launchOptions.args= Collections.singletonList(Settings.argValues);
         }
+        FrameworkConfig.Browser = browserInitialize.GetBrowser(Settings.BrowserName,launchOptions);
+
 
 
 

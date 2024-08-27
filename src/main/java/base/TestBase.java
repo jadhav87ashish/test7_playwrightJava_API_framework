@@ -1,5 +1,7 @@
 package base;
 
+import com.microsoft.playwright.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -14,14 +16,14 @@ public class TestBase {
     public static Properties stagingProperty;
     public static Properties prodProperty;
 
-    public TestBase(){
-        try{
-            prop=new Properties();
-            apiProp=new Properties();
-            resourceApiConfig=new Properties();
-            preProdProperty=new Properties();
-            stagingProperty=new Properties();
-            prodProperty=new Properties();
+    public TestBase() {
+        try {
+            prop = new Properties();
+            apiProp = new Properties();
+            resourceApiConfig = new Properties();
+            preProdProperty = new Properties();
+            stagingProperty = new Properties();
+            prodProperty = new Properties();
 
             InputStream ip = Files.newInputStream(Paths.get("src/main/java/config/config.properties"));
             InputStream apiIP = Files.newInputStream(Paths.get("src/main/java/config/apisConfig.properties"));
@@ -36,13 +38,30 @@ public class TestBase {
             stagingProperty.load(stagingPro);
             prodProperty.load(prodPro);
 
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
+    public Browser GetBrowser(String browserName, BrowserType.LaunchOptions launchOptions) {
+        FrameworkConfig.playwright = Playwright.create();
+        BrowserType browserType = null;
+        if (browserName.equalsIgnoreCase("chromium"))
+            browserType = FrameworkConfig.playwright.chromium();
+        if (browserName.equalsIgnoreCase("firefox"))
+            browserType = FrameworkConfig.playwright.firefox();{
+        if (browserName.equalsIgnoreCase("webkit"))
+            browserType = FrameworkConfig.playwright.webkit();
+    }
+    assert browserType !=null;
+        return browserType.launch(launchOptions);
+        }
 
-
+        public BrowserContext GetBrowserContext(Browser browser, Browser.NewContextOptions newContextOptions){
+        return browser.newContext(newContextOptions);
+        }
+        public Page GetPage(BrowserContext browserContext){
+        return browserContext.newPage();
+        }
 }
