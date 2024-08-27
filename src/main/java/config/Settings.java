@@ -9,6 +9,6 @@ public class Settings {
     public static Boolean Headless;
     public static Double count;
     public static String BrowserName;
-    public static String argValues;
-    public static String locale;
+    public static String Locale;
+    public static String argValue;
 }
