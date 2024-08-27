@@ -10,4 +10,5 @@ public class Settings {
     public static Double count;
     public static String BrowserName;
     public static String argValues;
+    public static String locale;
 }
