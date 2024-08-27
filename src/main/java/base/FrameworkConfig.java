@@ -16,4 +16,5 @@ public class FrameworkConfig {
 
 
     public static BrowserContext context;
+    public static Page localPage;
 }
