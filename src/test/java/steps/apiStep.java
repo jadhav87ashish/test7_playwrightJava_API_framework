@@ -17,25 +17,25 @@ public class apiStep {
     String getResult;
 
 
+
     @Given("GET request on end url {string} and query param {string}")
-    public void getRequestOnEndUrlAndQueryParam(String endurl, String param) {
+    public void get_request_on_end_url_and_query_param(String endurl, String param) {
         System.out.println("Ashish");
         response = api.getMethod(endurl,api.getQuery(param));
+        System.out.println(response);
         this.getResult=response.text();
     }
-
-
-
-
-
-
-
-
-
-
-    @And("verify API status code equals {int}")
-    public void verifyAPIStatusCodeEquals(int arg0) {
+    @Given("verify API status code equals {int}")
+    public void verify_api_status_code_equals(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
+
+
+
+
+
+
 
 
 }
