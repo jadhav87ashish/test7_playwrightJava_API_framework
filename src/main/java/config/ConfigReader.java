@@ -26,8 +26,19 @@ public class ConfigReader {
         Properties p =new Properties();
         InputStream inputStream = new FileInputStream("src/main/java/config/BrowserConfig.properties");
         p.load(inputStream);
-
+        Settings.Headless = Boolean.parseBoolean(p.getProperty("Headless_status"));
+        System.out.println("Headless: "+Settings.Headless);
+        Settings.Locale = p.getProperty("argValue");
+        Settings.argValue = p.getProperty("argValue");
+        Settings.count = Double.parseDouble(p.getProperty("count"));
         Settings.envName = System.getProperty("env");
+        System.out.println("Environment: "+ Settings.envName);
+        String browser = System.getProperty("environment");
+        if (browser==null){
+            Settings.BrowserName = p.getProperty("BrowserName");
+        } else{
+            Settings.BrowserName = browser;
+        }
         Settings.URL = config.url();
 
     }

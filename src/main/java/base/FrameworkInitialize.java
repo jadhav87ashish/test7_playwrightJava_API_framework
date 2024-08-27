@@ -16,11 +16,11 @@ public class FrameworkInitialize {
         launchOptions.headless = Settings.Headless;
         launchOptions.slowMo = Settings.count;
         if (!Settings.BrowserName.equalsIgnoreCase("webkit")) {
-            launchOptions.args = Collections.singletonList(Settings.argValues);
+            launchOptions.args = Collections.singletonList(Settings.argValue);
         }
         FrameworkConfig.Browser = browserInitialize.GetBrowser(Settings.BrowserName, launchOptions);
         Browser.NewContextOptions contextOptions = new Browser.NewContextOptions();
-        contextOptions.locale = Settings.locale;
+        contextOptions.locale = Settings.Locale;
 
         BrowserContext context = browserInitialize.GetBrowserContext(FrameworkConfig.Browser, contextOptions);
         context.setDefaultTimeout(15000);
