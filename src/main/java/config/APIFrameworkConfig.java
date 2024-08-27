@@ -2,7 +2,6 @@ package config;
 
 
 import org.aeonbits.owner.Config;
-import org.checkerframework.checker.units.qual.K;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
@@ -11,7 +10,7 @@ import org.checkerframework.checker.units.qual.K;
         "file:${user.dir}/src/main/resources/apiProperties/staging.properties"
 })
 
-public interface FrameworkConfig extends Config{
-    @Key("${env}.URI")
-    String URI();
+public interface APIFrameworkConfig extends Config{
+    @Key("${env}.url")
+    String url();
 }

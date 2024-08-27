@@ -1,6 +1,7 @@
 package config;
 
 import base.FrameworkConfig;
+import org.aeonbits.owner.Config;
 import org.aeonbits.owner.ConfigFactory;
 
 import java.io.FileInputStream;
@@ -10,7 +11,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
-    FrameworkConfig config = ConfigFactory.create(FrameworkConfig.class);
+
+    APIFrameworkConfig config = ConfigFactory.create(APIFrameworkConfig.class);
     public static void PopulateSettings(){
         ConfigReader reader = new ConfigReader();
         try{
@@ -26,9 +28,7 @@ public class ConfigReader {
         p.load(inputStream);
 
         Settings.envName = System.getProperty("env");
-        Settings.URL= config.url();
-
-
+        Settings.URL = config.url();
 
     }
 }

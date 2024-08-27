@@ -1,6 +1,8 @@
 package utility;
 
 import base.FrameworkConfig;
+import base.TestBase;
+import com.google.common.base.CaseFormat;
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
@@ -9,13 +11,10 @@ import config.Settings;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class APISetup {
-
-
-
-
-
+    Properties property;
 
     public APIResponse getMethod(String endurl, String input){
         String[] variables = input.split("&");
@@ -36,12 +35,12 @@ public class APISetup {
                 String[] parts = input.split("\\W+");
                 return setAPIRequestContext().get(formattedURL, RequestOptions.create().setQueryParam(parts[0],parts[1]));
 
+            case 2:
+                {
 
+                }
 
         }
-
-
-
         return null;
     }
 
@@ -78,6 +77,18 @@ public class APISetup {
 
 
         return param;
+    }
+    public Properties getProperty(){
+        if (Settings.envName.contains("preProd")){
+            property= TestBase.preProdProperty;
+        } else
+        if (Settings.envName.contains("staging")){
+            property=TestBase.stagingProperty;
+        }
+        else {
+            property=TestBase.prodProperty;
+        }
+        return property;
     }
 
 
