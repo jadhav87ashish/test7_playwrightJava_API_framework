@@ -10,7 +10,7 @@ public class FrameworkConfig {
     public static Page LocalPage;
     public static Page LocalPage2;
 
-    public static Playwright playwright;
+    public static Playwright Playwright;
 
     public static com.microsoft.playwright.Browser Browser;
 

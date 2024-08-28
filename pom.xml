@@ -46,7 +46,6 @@
             <version>7.8.1</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
@@ -227,18 +226,42 @@
             <version>4.1.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>7.2.3</version>
-            <scope>test</scope>
-        </dependency>
 
 
     </dependencies>
 
 
     <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <base.url>https://reqres.in/</base.url>
+            </properties>
+        </profile>
+        <profile>
+            <id>preProd</id>
+            <properties>
+                <base.url>https://reqres.in/</base.url>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>staging</id>
+            <properties>
+                <base.url>https://reqres.in/</base.url>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>default</id>
+            <properties>
+                <base.url>https://reqres.in/</base.url>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
 
         <profile>
             <id>browser</id>
@@ -258,8 +281,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <skipTests>false</skipTests>
                     <systemPropertyVariables>
                         <!--suppress UnresolvedMavenProperty -->
                         <base.url>${base.url}</base.url>
@@ -271,7 +303,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -Dcucumber.options="--plugin io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+
                     </argLine>
+
                 </configuration>
                 <dependencies>
 
@@ -280,20 +314,27 @@
                         <artifactId>aspectjweaver</artifactId>
                         <version>${aspectj.version}</version>
                     </dependency>
+                    <!--                    <dependency>-->
+                    <!--                        <groupId>org.junit.jupiter</groupId>-->
+                    <!--                        <artifactId>junit-jupiter-engine</artifactId>-->
+                    <!--                        <version>5.9.2</version>-->
+                    <!--                    </dependency>-->
                 </dependencies>
 
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>11</source>
                     <target>11</target>
                 </configuration>
+
             </plugin>
 
         </plugins>
 
     </build>
+
 </project>
