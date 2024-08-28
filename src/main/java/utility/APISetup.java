@@ -46,7 +46,7 @@ public class APISetup {
 
     private APIRequestContext setAPIRequestContext() {
         System.out.println(setBaseURL());
-        return FrameworkConfig.playwright.request().newContext(new APIRequest.NewContextOptions()
+        return FrameworkConfig.Playwright.request().newContext(new APIRequest.NewContextOptions()
                 .setBaseURL(setBaseURL()).setExtraHTTPHeaders(setHeaders()).setTimeout(30000));
 
     }

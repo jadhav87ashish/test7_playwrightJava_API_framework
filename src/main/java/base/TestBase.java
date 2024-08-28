@@ -45,14 +45,14 @@ public class TestBase {
 
 
     public Browser GetBrowser(String browserName, BrowserType.LaunchOptions launchOptions) {
-        FrameworkConfig.playwright = Playwright.create();
+        FrameworkConfig.Playwright = Playwright.create();
         BrowserType browserType = null;
         if (browserName.equalsIgnoreCase("chromium"))
-            browserType = FrameworkConfig.playwright.chromium();
+            browserType = FrameworkConfig.Playwright.chromium();
         if (browserName.equalsIgnoreCase("firefox"))
-            browserType = FrameworkConfig.playwright.firefox();{
+            browserType = FrameworkConfig.Playwright.firefox();{
         if (browserName.equalsIgnoreCase("webkit"))
-            browserType = FrameworkConfig.playwright.webkit();
+            browserType = FrameworkConfig.Playwright.webkit();
     }
     assert browserType !=null;
         return browserType.launch(launchOptions);
