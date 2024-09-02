@@ -1,14 +1,14 @@
 package config;
 
-import org.apache.poi.ss.formula.functions.DStarRunner;
+import java.util.List;
 
 public class Settings {
-    public static String URL;
-    public static String envName;
-
-    public static Boolean Headless;
-    public static Double count;
     public static String BrowserName;
+    public static boolean Headless;
     public static String Locale;
+    public static String URL;
+    public static double count;
     public static String argValue;
+    public static String envName;
+    public static String requiredParam;
 }
