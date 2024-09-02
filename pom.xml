@@ -225,38 +225,33 @@
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>4.1.2</version>
         </dependency>
-
-
-
     </dependencies>
 
 
     <profiles>
         <profile>
-            <id>prod</id>
-            <properties>
-                <base.url>https://reqres.in/</base.url>
-            </properties>
-        </profile>
-        <profile>
             <id>preProd</id>
             <properties>
-                <base.url>https://reqres.in/</base.url>
+                <base.url>https://reqres.in/api/</base.url>
             </properties>
         </profile>
 
+        <profile>
+            <id>prod</id>
+            <properties>
+                <base.url>https://reqres.in/api/</base.url>
+            </properties>
+        </profile>
         <profile>
             <id>staging</id>
             <properties>
-                <base.url>https://reqres.in/</base.url>
+                <base.url>https://reqres.in/api/</base.url>
             </properties>
         </profile>
-
-
         <profile>
             <id>default</id>
             <properties>
-                <base.url>https://reqres.in/</base.url>
+                <base.url>https://reqres.in/api/</base.url>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -336,5 +331,4 @@
         </plugins>
 
     </build>
-
 </project>
