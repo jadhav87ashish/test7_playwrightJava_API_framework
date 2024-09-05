@@ -9,6 +9,8 @@ import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.RequestOptions;
 import config.Settings;
+//import pages.login.LoginPage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import static org.testng.AssertJUnit.assertEquals;
 
 public class APISetup {
 
@@ -208,15 +211,20 @@ public class APISetup {
         }
         return null;
     }
-    public APIResponse getMethodWithoutParam(String endURl) {
-        return setApiRequestContext().get(endURl, RequestOptions.create());
-        }
 
     public String getSchema(String pathName) throws IOException {
         return Files.readString(Path.of(TestBase.apiProp.getProperty(pathName)));
     }
+
+
+    //    public String updateExistingSchema(String jsonSchema, String path, String updateValue) {
+//        jsonSchema = jsonSchema.replace(JsonPath.read(jsonSchema, "$" + path), updateValue);
+//        System.out.println(jsonSchema);
+//        return jsonSchema;
+//    }
     public String updateExistingSchema(String jsonSchema, String path, String updateValue) {
         jsonSchema = jsonSchema.replace(JsonPath.read(jsonSchema, "$" + path), updateValue);
+//        System.out.println(jsonSchema);
 
         return jsonSchema;
     }
