@@ -43,12 +43,6 @@ public class apisStep {
         System.out.println(result.text());
         this.getResult = result.text();
     }
-    @Given("GET end URL {string} without Query parameter")
-    public void getEndURLWithoutQueryParameter(String endURl) {
-        result = api.getMethodWithoutParam(endURl);
-        System.out.println(result.text());
-        this.getResult = result.text();
-    }
 
 
     @And("check {int} status code")
