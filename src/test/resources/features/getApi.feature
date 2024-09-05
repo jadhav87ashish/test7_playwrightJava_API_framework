@@ -25,3 +25,7 @@ Feature: GET API validations
     Then validate Response for ".data.last_name" is String
     Then validate Response for ".data.avatar" is String
 
+  @getAPI3
+  Scenario: Single users not found 404.
+    Given GET end URL "users/23" without Query parameter
+    And check 404 status code
