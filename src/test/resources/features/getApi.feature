@@ -77,3 +77,8 @@ Feature: GET API validations
     Then validate Response for ".data.pantone_value" is String
     Then validate Response for ".support.url" is String
     Then validate Response for ".support.text" is String
+
+  @getAPI6
+  Scenario: GET Single resource not found
+    Given GET end URL "unknown/23" without Query parameter
+    And check 404 status code
