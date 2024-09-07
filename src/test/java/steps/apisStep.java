@@ -32,6 +32,7 @@ public class apisStep {
     public void endURLAndQueryParameterAndBody(String endURl, String queryParameter) {
         System.out.println(endURl + api.getQuery(queryParameter)+"test");
         result = api.getMethod(endURl, api.getQuery(queryParameter));
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
         this.getResult = result.text();
 
@@ -40,12 +41,14 @@ public class apisStep {
     public void getEndURLWithQueryParameter(String endURl, String queryParameter) {
         System.out.println(endURl + queryParameter);
         result = api.getMethod(endURl,queryParameter );
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
         this.getResult = result.text();
     }
     @Given("GET end URL {string} without Query parameter")
     public void getEndURLWithoutQueryParameter(String endURl) {
         result = api.getMethodWithoutParam(endURl);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
         this.getResult = result.text();
     }
@@ -53,10 +56,8 @@ public class apisStep {
 
     @And("check {int} status code")
     public void checkStatusCode(int arg0) {
-
         assertEquals("Status code is not matching", arg0, result.status());
-        Allure.addAttachment("Status code Error", "Status code is not matching");
-
+        Allure.addAttachment("Status code Message", "Status code is matching");
     }
 
     @And("validate Response for {string} is {string}")
@@ -104,8 +105,8 @@ public class apisStep {
         System.out.println("Param Appended" + Settings.requiredParam);
         Allure.addAttachment("Payload:", firstJson);
         result = api.postMethod(endURl, Settings.requiredParam, firstJson);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("Response:", result.text());
         this.getResult = result.text();
     }
 
@@ -113,8 +114,8 @@ public class apisStep {
     public void postEndURLWithoutQueryParameter(String endURl) {
         Allure.addAttachment("Payload:", firstJson);
         result = api.postMethodWithoutParam(endURl, firstJson);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("Response:", result.text());
         this.getResult = result.text();
     }
 
@@ -141,8 +142,8 @@ public class apisStep {
         }
         Object extractedData = JsonPath.read(result.text(), "$" + path);
         result = api.deleteMethod(endUrl, queryParam, extractedData);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("response:", result.text());
     }
 
     @Then("validate Response for {string} is boolean")
@@ -224,8 +225,8 @@ public class apisStep {
     public void putEndURlAndQueryParameter(String endURl) {
         System.out.println(" bot id is  " + Settings.requiredParam);
         result = api.putMethod(endURl, Settings.requiredParam, firstJson);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("response:", result.text());
         this.getResult = result.text();
     }
 
@@ -238,8 +239,8 @@ public class apisStep {
 //            queryParam = Settings.apiBotID + "&" + queryParameter;
 //        }
         result = api.postMethod(endURl, api.getQuery(queryParameter), JsonPath.read(result.text(), "$" + path));
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("response:", result.text());
     }
 
     @Given("POST end URL {string} and query parameter {string} and pass above API response Data {string} for scheme {string}")
@@ -247,8 +248,8 @@ public class apisStep {
 
         firstJson = api.getSchema(pathName);
         result = api.postMethodForDynamicURL(endURl, api.getQuery(queryParameter), JsonPath.read(result.text(), "$" + path), firstJson);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("response:", result.text());
     }
 
     @Given("PUT end URL {string} and query parameter {string} and pass above API response Data {string} for scheme {string}")
@@ -267,8 +268,8 @@ public class apisStep {
     @Given("PUT end URl {string} and Query parameter {string}")
     public void putEndURlAndQueryParameter(String endURl, String queryParameter, String schema) {
         System.out.println(endURl + api.getQuery(queryParameter));
-
         result = api.putMethod(endURl, api.getQuery(queryParameter), schema);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
         this.getResult = result.text();
     }
@@ -283,14 +284,7 @@ public class apisStep {
         }
         Object extractedData = JsonPath.read(result.text(), "$" + path);
         result = api.patchMethod(endUrl, queryParam, extractedData, firstJson);
+        Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
-        Allure.addAttachment("response:", result.text());
     }
-    @Given("user login")
-    public void userLogin() {
-        System.out.println("Ashish");
-    }
-
-
-
 }
