@@ -145,12 +145,6 @@ public class apisStep {
         Allure.addAttachment("response:", result.text());
     }
 
-
-    //    @Then("validate Response for {string} is boolean")
-//    public void validateResponseForIsBoolean(String path) {
-//        Boolean value = JsonPath.read(result.text(), "$" + path);
-//        assertTrue(value);
-//    }
     @Then("validate Response for {string} is boolean")
     public void validateResponseForIsBoolean(String path) {
         Object valueObject = JsonPath.read(result.text(), "$" + path);
@@ -169,8 +163,20 @@ public class apisStep {
     @Then("validate Response for {string} is int")
     public void validateResponseForIsInt(String path) {
         Object value = JsonPath.read(result.text(), "$" + path);
-        boolean b = value instanceof Integer;
-        assertTrue(b);
+        if (value instanceof Integer) {
+            boolean b = value instanceof Integer;
+            assertTrue(b);
+        } else if (value instanceof List) {
+            List<Integer> list = JsonPath.read(result.text(), path);
+            for (Integer item : list) {
+                boolean b = item instanceof Integer;
+                assertTrue(b);
+                assertNotNull(item);
+            }
+        } else {
+            throw new RuntimeException("Field is not Integer");
+        }
+
     }
 
     @Then("validate Response for {string} is {int}")

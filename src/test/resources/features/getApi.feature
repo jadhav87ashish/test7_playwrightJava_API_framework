@@ -9,7 +9,7 @@ Feature: GET API validations
     Then validate Response for ".per_page" is int
     Then validate Response for ".total" is int
     Then validate Response for ".total_pages" is int
-#    Then validate Response for ".data[*].id" is int
+    Then validate Response for ".data[*].id" is int
     Then validate Response for ".data[*].email" is String
     Then validate Response for ".data[*].first_name" is String
     Then validate Response for ".data[*].last_name" is String
@@ -29,3 +29,23 @@ Feature: GET API validations
   Scenario: Single users not found 404.
     Given GET end URL "users/23" without Query parameter
     And check 404 status code
+
+  @getAPI4
+  Scenario: GET List Resources.
+    Given GET end URL "unknown" without Query parameter
+    And check 200 status code
+    Then validate Response for ".page" is int
+    Then validate Response for ".per_page" is int
+    Then validate Response for ".total" is int
+    Then validate Response for ".total_pages" is int
+    Then validate Response for ".total_pages" is int
+    Then validate Response for ".total_pages" is int
+    Then validate Response for ".data[0].id" is int
+    Then validate Response for ".data[*].id" is int
+    Then validate Response for ".data[0].name" is String
+    Then validate Response for ".data[*].name" is String
+    Then validate Response for ".data[*].year" is int
+    Then validate Response for ".data[*].color" is String
+    Then validate Response for ".data[*].pantone_value" is String
+    Then validate Response for ".support.url" is String
+    Then validate Response for ".support.text" is String
