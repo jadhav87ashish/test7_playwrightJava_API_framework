@@ -2,7 +2,7 @@
 
 Feature: POST API validations
   @postAPI1
-  Scenario: Verify mapping API response.
+  Scenario: POST Create single user.
     Given get scheme "createSingleUser"
     When POST end URL "users" without query parameter
     And check 201 status code
@@ -10,5 +10,13 @@ Feature: POST API validations
     Then validate Response for ".job" is String
     Then validate Response for ".id" is String
     Then validate Response for ".createdAt" is String
+
+  @postAPI2
+  Scenario: POST register successful
+    Given get scheme "registerSingleUser"
+    When POST end URL "register" without query parameter
+    And check 201 status code
+    Then validate Response for ".id" is int
+    Then validate Response for ".token" is String
 
 
