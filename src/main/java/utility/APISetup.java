@@ -595,13 +595,10 @@ public class APISetup {
         String thirdKey;
         String fourthKey;
         String formattedURL;
-// Check if the search string is present in the URL
         if (endURl.contains("%s")) {
-// Add your desired formatted string or modification logic here
             formattedURL = String.format(endURl,input);
 
         } else {
-// If the search string is not present, pass the original URL as is
             formattedURL = endURl;
         }
 
@@ -612,7 +609,6 @@ public class APISetup {
                 return setApiRequestContext().put(formattedURL, RequestOptions.create().setQueryParam(parts[0], parts[1]).setData(schema));
 
             case 2:
-//    [bot=x1671106954323,subscription=25183]
                 System.out.println("Executing 2nd loop");
                 parameter = getQueryParameter(input);
                 firstKey = parameter.keySet().stream().findFirst().orElse(null);
@@ -641,6 +637,9 @@ public class APISetup {
                         setQueryParam(thirdKey, parameter.get(thirdKey)).setQueryParam(fourthKey, parameter.get(fourthKey)).setData(schema));
         }
         return null;
+    }
+    public APIResponse putMethodWithoutParam(String endURl, String firstJson) {
+        return setApiRequestContext().put(endURl, RequestOptions.create().setData(firstJson));
     }
 
     public Properties getProperty(){
