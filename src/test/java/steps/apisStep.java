@@ -229,6 +229,14 @@ public class apisStep {
         System.out.println(result.text());
         this.getResult = result.text();
     }
+    @When("PUT end URl {string} without query parameter")
+    public void putEndURlWithoutQueryParameter(String endURl) {
+        Allure.addAttachment("Payload:", firstJson);
+        result = api.putMethodWithoutParam(endURl, firstJson);
+        Allure.addAttachment("Response Body", result.text());
+        System.out.println(result.text());
+        this.getResult = result.text();
+    }
 
     @Given("POST end URL {string} and query parameter {string} and pass above API response Data {string}")
     public void postEndURLAndQueryParameterAndPassAboveAPIResponseData(String endURl, String queryParameter, String path) {
@@ -287,4 +295,6 @@ public class apisStep {
         Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
     }
+
+
 }
