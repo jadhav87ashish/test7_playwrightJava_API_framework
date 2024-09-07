@@ -15,7 +15,7 @@ Feature: POST API validations
   Scenario: POST register successful
     Given get scheme "registerSingleUser"
     When POST end URL "register" without query parameter
-    And check 201 status code
+    And check 200 status code
     Then validate Response for ".id" is int
     Then validate Response for ".token" is String
 
