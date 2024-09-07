@@ -246,6 +246,13 @@ public class apisStep {
         this.getResult = result.text();
 
     }
+    @Given("DELETE end URl {string} without query parameter")
+    public void deleteEndURlWithoutQueryParameter(String endURl) {
+        result = api.deleteMethodWithoutParam(endURl);
+        Allure.addAttachment("Response Body", result.text());
+        System.out.println(result.text());
+        this.getResult = result.text();
+    }
 
     @Given("POST end URL {string} and query parameter {string} and pass above API response Data {string}")
     public void postEndURLAndQueryParameterAndPassAboveAPIResponseData(String endURl, String queryParameter, String path) {
@@ -304,6 +311,7 @@ public class apisStep {
         Allure.addAttachment("Response Body", result.text());
         System.out.println(result.text());
     }
+
 
 
 }

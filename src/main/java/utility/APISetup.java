@@ -644,6 +644,10 @@ public class APISetup {
     public APIResponse patchMethodWithoutParam(String endURl, String firstJson) {
         return setApiRequestContext().patch(endURl, RequestOptions.create().setData(firstJson));
     }
+    public APIResponse deleteMethodWithoutParam(String endURl) {
+        return setApiRequestContext().delete(endURl, RequestOptions.create());
+
+    }
 
     public Properties getProperty(){
         if (Settings.envName.equalsIgnoreCase("prod")) {
