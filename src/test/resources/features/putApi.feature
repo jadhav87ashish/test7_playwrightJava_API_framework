@@ -10,6 +10,6 @@ Feature: PUT API validations
     Then validate Response for ".name" is "Ashish"
     Then validate Response for ".job" is String
     Then validate Response for ".job" is "SDET-II"
-    Then validate Response for ".createdAt" is String
+    Then validate Response for ".updatedAt" is String
 
 
