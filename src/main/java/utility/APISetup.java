@@ -53,7 +53,7 @@ public class APISetup {
         String baseURL;
         if (Settings.envName.equalsIgnoreCase("preProd")|| Settings.envName.equalsIgnoreCase("prod")|| Settings.envName.equalsIgnoreCase("staging")) {
             baseURL = Settings.URL;
-            System.out.println("baseURL "+baseURL);
+            System.out.println("BaseURL "+baseURL);
         } else {
             baseURL = Settings.URL;
             System.out.println(baseURL);
@@ -88,18 +88,9 @@ public class APISetup {
 //    }
 
     public APIRequestContext setApiRequestContext() {
-        System.out.println(setBaseURL());
         return FrameworkConfig.Playwright.request().newContext(new APIRequest.NewContextOptions()
                 .setBaseURL(setBaseURL()).setExtraHTTPHeaders(setHeader()));
     }
-
-
-
-//    public APIRequestContext setInboxApiRequestContext() {
-//        return FrameworkConfig.Playwright.request().newContext(new APIRequest.NewContextOptions()
-//                .setBaseURL(setBaseURL()).setExtraHTTPHeaders(setInboxHeader()));
-//    }
-
     public Map<String, String> getQueryParameter(String input) {
         Map<String, String> headers = new HashMap<>();
         String[] variables = input.split("&");
@@ -124,13 +115,9 @@ public class APISetup {
         String thirdKey;
         String fourthKey;
         String formattedURL;
-//    [bot=x1671106954323,subscription=25183]
         if (endURl.contains("%s")) {
-// Add your desired formatted string or modification logic here
             formattedURL = String.format(endURl, input);
-
         } else {
-// If the search string is not present, pass the original URL as is
             formattedURL = endURl;
         }
         switch (variables.length) {
@@ -140,7 +127,6 @@ public class APISetup {
                 return setApiRequestContext().get(formattedURL, RequestOptions.create().setQueryParam(parts[0], parts[1]));
 
             case 2:
-//    [bot=x1671106954323,subscription=25183]
                 System.out.println("Executing 2nd loop");
                 headers = getQueryParameter(input);
                 firstKey = headers.keySet().stream().findFirst().orElse(null);
