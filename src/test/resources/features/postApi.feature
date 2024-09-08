@@ -27,3 +27,9 @@ Feature: POST API validations
     Then validate Response for ".error" is String
     Then validate Response for ".error" is "Missing password"
 
+  @postAPI4
+  Scenario: POST Login - successful
+    Given get scheme "loginSuccessful"
+    When POST end URL "login" without query parameter
+    And check 200 status code
+    Then validate Response for ".token" is String
