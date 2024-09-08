@@ -19,4 +19,11 @@ Feature: POST API validations
     Then validate Response for ".id" is int
     Then validate Response for ".token" is String
 
+  @postAPI3
+  Scenario: POST Register - unsuccessful
+    Given get scheme "registerUnsuccessfulSingleUser"
+    When POST end URL "register" without query parameter
+    And check 400 status code
+    Then validate Response for ".error" is String
+    Then validate Response for ".error" is "Missing password"
 
