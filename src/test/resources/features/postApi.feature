@@ -33,3 +33,11 @@ Feature: POST API validations
     When POST end URL "login" without query parameter
     And check 200 status code
     Then validate Response for ".token" is String
+
+  @postAPI5
+  Scenario: POST Login - unsuccessful
+    Given get scheme "loginUnSuccessful"
+    When POST end URL "login" without query parameter
+    And check 400 status code
+    Then validate Response for ".error" is String
+    Then validate Response for ".error" is "Missing password"
