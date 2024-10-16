@@ -89,7 +89,7 @@ public class APISetup {
 
     public APIRequestContext setApiRequestContext() {
         return FrameworkConfig.Playwright.request().newContext(new APIRequest.NewContextOptions()
-                .setBaseURL(setBaseURL()).setExtraHTTPHeaders(setHeader()));
+                .setBaseURL(setBaseURL()).setExtraHTTPHeaders(setHeader()).setTimeout(Settings.timeOut));
     }
     public Map<String, String> getQueryParameter(String input) {
         Map<String, String> headers = new HashMap<>();

@@ -35,8 +35,19 @@ public class ConfigReader {
         Settings.envName = System.getProperty("env");
         System.out.println(Settings.envName);
 
-        String browser = System.getProperty("environment");
+        String time = System.getProperty("time");
+        if (time == null) {
+            Settings.timeOut = Integer.parseInt(p.getProperty("DefaultTimeOut"));
+        } else {
+            Settings.timeOut = Integer.parseInt(System.getProperty("time")); //mvn clean test "-Dcucumber.filter.tags=@getAPI7" -Denv=prod -Dtime=30000
 
+        }
+
+
+
+
+
+        String browser = System.getProperty("environment");
         if (browser == null) {
             Settings.BrowserName = p.getProperty("BrowserName");
         } else {
