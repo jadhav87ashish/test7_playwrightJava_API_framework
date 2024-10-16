@@ -10,5 +10,7 @@ public class Settings {
     public static double count;
     public static String argValue;
     public static String envName;
+    public static int timeOut;
+
     public static String requiredParam;
 }
