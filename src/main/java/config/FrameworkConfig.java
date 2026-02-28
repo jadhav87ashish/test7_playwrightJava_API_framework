@@ -12,6 +12,8 @@ import java.util.List;
         "file:${user.dir}/src/main/resources/apiProperties/prod-config.properties",
         "file:${user.dir}/src/main/resources/apiProperties/preprod-config.properties",
         "file:${user.dir}/src/main/resources/apiProperties/staging-config.properties",
+        "file:${user.dir}/src/main/resources/apiProperties/booking-config.properties",
+
 })
 public interface FrameworkConfig extends Config {
 

@@ -249,6 +249,12 @@
             </properties>
         </profile>
         <profile>
+            <id>booking</id>
+            <properties>
+                <base.url>https://restful-booker.herokuapp.com/</base.url>
+            </properties>
+        </profile>
+        <profile>
             <id>default</id>
             <properties>
                 <base.url>https://reqres.in/api/</base.url>

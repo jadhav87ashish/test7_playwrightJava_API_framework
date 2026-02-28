@@ -16,6 +16,8 @@ public class TestBase {
     public static Properties preprodProperty;
     public static Properties prodProperty;
     public static Properties stagingProperty;
+    public static Properties bookingProperty;
+
 
 
     // Loading the config property in runtime(inheritance) or we can call by className.property object.
@@ -27,6 +29,7 @@ public class TestBase {
             preprodProperty = new Properties();
             prodProperty = new Properties();
             stagingProperty = new Properties();
+            bookingProperty = new Properties();
 
 
             InputStream ip = Files.newInputStream(Paths.get("src/main/java/config/config.properties"));
@@ -34,6 +37,7 @@ public class TestBase {
             InputStream preprodPro = Files.newInputStream(Paths.get("src/main/resources/apiProperties/preprod-config.properties"));
             InputStream prodPro = Files.newInputStream(Paths.get("src/main/resources/apiProperties/prod-config.properties"));
             InputStream stagingPro = Files.newInputStream(Paths.get("src/main/resources/apiProperties/staging-config.properties"));
+            InputStream bookingPro = Files.newInputStream(Paths.get("src/main/resources/apiProperties/booking-config.properties"));
 
 
             prop.load(ip);
@@ -41,6 +45,8 @@ public class TestBase {
             preprodProperty.load(preprodPro);
             prodProperty.load(prodPro);
             stagingProperty.load(stagingPro);
+            bookingProperty.load(bookingPro);
+
 
 
         } catch (IOException e) {

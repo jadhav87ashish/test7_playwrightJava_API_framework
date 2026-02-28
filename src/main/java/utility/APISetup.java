@@ -51,7 +51,7 @@ public class APISetup {
 
     public String setBaseURL() {
         String baseURL;
-        if (Settings.envName.equalsIgnoreCase("preProd")|| Settings.envName.equalsIgnoreCase("prod")|| Settings.envName.equalsIgnoreCase("staging")) {
+        if (Settings.envName.equalsIgnoreCase("preProd")|| Settings.envName.equalsIgnoreCase("prod")|| Settings.envName.equalsIgnoreCase("staging")|| Settings.envName.equalsIgnoreCase("booking")) {
             baseURL = Settings.URL;
             System.out.println("BaseURL "+baseURL);
         } else {
@@ -231,7 +231,11 @@ public class APISetup {
         } else if (Settings.envName.contains("preprod")) {
             property = TestBase.preprodProperty;
 
-        } else {
+        }
+        else if (Settings.envName.contains("booking")) {
+            property = TestBase.bookingProperty;
+        }
+        else {
             property = TestBase.stagingProperty;
         }
         if (updatedValue.length == 1) {
@@ -655,6 +659,9 @@ public class APISetup {
         }
         else if (Settings.envName.equalsIgnoreCase("preprod")) {
             property = TestBase.preprodProperty;
+        }
+        else if (Settings.envName.equalsIgnoreCase("booking")) {
+            property = TestBase.bookingProperty;
         }
         else {
             property = TestBase.stagingProperty;
